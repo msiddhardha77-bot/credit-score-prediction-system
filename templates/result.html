@@ -1,0 +1,92 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="row justify-content-center">
+
+    <div class="col-lg-8">
+
+        <div class="card shadow-lg border-0">
+
+            <div class="card-body p-5 text-center">
+
+                <h2 class="mb-4">
+                    Credit Risk Prediction Result
+                </h2>
+
+                {% if result.risk_label == "Low Credit Risk" %}
+
+                    <div class="alert alert-success">
+
+                        <h3 class="mb-0">
+                            ✅ {{ result.risk_label }}
+                        </h3>
+
+                    </div>
+
+                {% else %}
+
+                    <div class="alert alert-danger">
+
+                        <h3 class="mb-0">
+                            ⚠️ {{ result.risk_label }}
+                        </h3>
+
+                    </div>
+
+                {% endif %}
+
+                <div class="mt-4">
+
+                    <h5 class="text-muted">
+                        Prediction Score
+                    </h5>
+
+                    <h2 class="text-primary fw-bold">
+
+                        {{ result.score }}
+
+                    </h2>
+
+                </div>
+
+                <div class="alert alert-info mt-4">
+
+                    Credit risk assessment completed successfully.
+
+                </div>
+
+                <div class="mt-5">
+
+                    <a href="{{ url_for('predict') }}"
+                       class="btn btn-primary btn-lg me-2">
+
+                        Predict Again
+
+                    </a>
+
+                    <a href="{{ url_for('history') }}"
+                       class="btn btn-success btn-lg me-2">
+
+                        View History
+
+                    </a>
+
+                    <a href="{{ url_for('dashboard') }}"
+                       class="btn btn-secondary btn-lg">
+
+                        Dashboard
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,148 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="row justify-content-center">
+
+    <div class="col-lg-9">
+
+        <div class="card shadow-lg border-0">
+
+            <div class="card-header bg-primary text-white text-center py-3">
+                <h2 class="mb-0">
+                    Credit Risk Prediction
+                </h2>
+                <small>
+                    Enter the applicant details to assess credit risk
+                </small>
+            </div>
+
+            <div class="card-body p-5">
+
+                <form action="{{ url_for('predict') }}" method="POST">
+
+                    <div class="row g-4">
+
+                        <div class="col-md-6">
+                            <label class="form-label fw-semibold">
+                                Age
+                            </label>
+                            <input
+                                type="number"
+                                class="form-control"
+                                name="age"
+                                placeholder="Enter Age"
+                                required>
+                        </div>
+
+                        <div class="col-md-6">
+                            <label class="form-label fw-semibold">
+                                Monthly Income (₹)
+                            </label>
+                            <input
+                                type="number"
+                                class="form-control"
+                                name="income"
+                                placeholder="Enter Monthly Income"
+                                required>
+                        </div>
+
+                        <div class="col-md-6">
+                            <label class="form-label fw-semibold">
+                                Loan Amount (₹)
+                            </label>
+                            <input
+                                type="number"
+                                class="form-control"
+                                name="loan_amount"
+                                placeholder="Enter Loan Amount"
+                                required>
+                        </div>
+
+                        <div class="col-md-6">
+                            <label class="form-label fw-semibold">
+                                Credit History
+                            </label>
+
+                            <select
+                                class="form-select"
+                                name="credit_history"
+                                required>
+
+                                <option value="">Select</option>
+
+                                <option value="1">
+                                    Good Credit History
+                                </option>
+
+                                <option value="0">
+                                    Poor Credit History
+                                </option>
+
+                            </select>
+
+                        </div>
+
+                        <div class="col-md-6">
+                            <label class="form-label fw-semibold">
+                                Employment Years
+                            </label>
+                            <input
+                                type="number"
+                                class="form-control"
+                                name="employment_years"
+                                placeholder="Years of Employment"
+                                required>
+                        </div>
+
+                        <div class="col-md-6">
+                            <label class="form-label fw-semibold">
+                                Debt Ratio
+                            </label>
+                            <input
+                                type="number"
+                                step="0.01"
+                                class="form-control"
+                                name="debt_ratio"
+                                placeholder="Example: 0.35"
+                                required>
+                            <small class="text-muted">
+                              Example: 0.35 means 35% of income is used to repay debts.
+                            </small>
+                        </div>
+
+                    </div>
+
+                    <hr class="my-4">
+
+                    <div class="text-center">
+
+                        <button
+                            type="submit"
+                            class="btn btn-primary btn-lg px-5">
+
+                            Predict Credit Risk
+
+                        </button>
+
+                        <button
+                            type="reset"
+                            class="btn btn-outline-secondary btn-lg px-5 ms-2">
+
+                            Reset
+
+                        </button>
+
+                    </div>
+
+                </form>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

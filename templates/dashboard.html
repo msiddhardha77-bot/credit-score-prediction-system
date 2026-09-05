@@ -1,0 +1,174 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+
+    <div>
+        <h2 class="fw-bold">
+            Dashboard
+        </h2>
+
+        <p class="text-muted mb-0">
+            Welcome,
+            <strong>{{ session["username"] }}</strong>
+        </p>
+    </div>
+
+    <a href="{{ url_for('predict') }}" class="btn btn-primary">
+        + New Prediction
+    </a>
+
+</div>
+
+<div class="row g-4">
+
+    <div class="col-md-4">
+
+        <div class="card border-0 shadow-lg h-100">
+
+            <div class="card-body text-center">
+
+                <h5 class="text-muted">
+                    Total Predictions
+                </h5>
+
+                <h1 class="display-5 text-primary fw-bold">
+                    {{ total }}
+                </h1>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="col-md-4">
+
+        <div class="card border-0 shadow-lg h-100">
+
+            <div class="card-body text-center">
+
+                <h5 class="text-muted">
+                    Low Credit Risk
+                </h5>
+
+                <h1 class="display-5 text-success fw-bold">
+                    {{ low }}
+                </h1>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="col-md-4">
+
+        <div class="card border-0 shadow-lg h-100">
+
+            <div class="card-body text-center">
+
+                <h5 class="text-muted">
+                    High Credit Risk
+                </h5>
+
+                <h1 class="display-5 text-danger fw-bold">
+                    {{ high }}
+                </h1>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<div class="card mt-5 shadow-lg border-0">
+
+    <div class="card-header bg-primary text-white">
+
+        <h4 class="mb-0">
+            Credit Risk Statistics
+        </h4>
+
+    </div>
+
+    <div class="card-body">
+
+        <div style="width:350px; height:350px; margin:auto;">
+
+            <canvas id="riskChart"></canvas>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script>
+
+const ctx = document.getElementById("riskChart");
+
+new Chart(ctx, {
+
+    type: "pie",
+
+    data: {
+
+        labels: [
+
+            "Low Credit Risk",
+
+            "High Credit Risk"
+
+        ],
+
+        datasets: [{
+
+            data: [
+
+                {{ low }},
+
+                {{ high }}
+
+            ],
+
+            backgroundColor: [
+
+                "#198754",
+
+                "#dc3545"
+
+            ],
+
+            borderWidth: 2
+
+        }]
+
+    },
+
+    options: {
+
+        responsive: true,
+
+        maintainAspectRatio: false,
+
+        plugins: {
+
+            legend: {
+
+                position: "bottom"
+
+            }
+
+        }
+
+    }
+
+});
+
+</script>
+
+{% endblock %}
