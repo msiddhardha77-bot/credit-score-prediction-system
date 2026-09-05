@@ -1,6 +1,6 @@
 from functools import lru_cache
 from pathlib import Path
-
+import os
 from flask import Flask, render_template, request, flash, redirect, url_for, session
 from tensorflow.keras.models import load_model
 
@@ -25,7 +25,7 @@ app.config.from_object(Config)
 db = mysql.connector.connect(
     host="localhost",
     user="root",
-    password="Siddu@9505",      # Leave empty if you did not set a password
+    password=os.environ.get("DB_PASSWORD", ""),      # Leave empty if you did not set a password
     database="credit_scoring"
 )
 
